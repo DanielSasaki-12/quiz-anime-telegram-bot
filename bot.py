@@ -18,21 +18,7 @@ BOT_TOKEN = os.getenv('BOT_TOKEN', '8458879508:AAGavGjA2qn-RUcSaaHLAM96--lS0yzNq
 QUESTIONS = [
     # === QUESTIONS FACILES (Niveau Apprenti) ===
     {
-        # Créer le texte de la question avec indicateurs visuels selon la difficulté
-        difficulty_emoji = {
-            "easy": "🟢", 
-            "medium": "🟡", 
-            "hard": "🔴", 
-            "nightmare": "💜",
-            "impossible": "🖤"
-        }
-        difficulty_names = {
-            "easy": "Facile",
-            "medium": "Moyen", 
-            "hard": "Difficile", 
-            "nightmare": "Cauchemar",
-            "impossible": "Impossible"
-        }"type": "text",
+        "type": "text",
         "question": "Quel est le nom du personnage principal de Naruto ?",
         "options": ["Naruto Uzumaki", "Sasuke Uchiha", "Sakura Haruno", "Kakashi Hatake"],
         "correct": 0,
@@ -173,7 +159,7 @@ QUESTIONS = [
     {
         "type": "text",
         "question": "Dans Psycho-Pass, qui contrôle réellement le Sibyl System ?",
-        "options": ["Des IA", "Des criminels asympotmatiques", "Le gouvernement", "Des cerveaux de criminels"],
+        "options": ["Des IA", "Des criminels asympomatiques", "Le gouvernement", "Des cerveaux de criminels"],
         "correct": 3,
         "difficulty": "impossible",
         "anime": "Psycho-Pass"
@@ -292,20 +278,20 @@ class AnimeQuizBot:
 Je suis votre bot quiz spécialisé dans l'univers de l'anime !
 
 **🎯 Fonctionnalités :**
-- 15 questions par quiz (texte, images, openings)
-- Animes du monde entier (classiques & récents)
-- Questions chronométrées (10 secondes)
-- Difficulté progressive (Facile → Impossible)
-- Système de points avec bonus vitesse
+• 15 questions par quiz (texte, images, openings)
+• Animes du monde entier (classiques & récents)
+• Questions chronométrées (10 secondes)
+• Difficulté progressive (Facile → Impossible)
+• Système de points avec bonus vitesse
 
 **📋 Commandes :**
-- /quiz - Commencer un nouveau quiz
-- /score - Voir votre score actuel
-- /help - Afficher l'aide détaillée
+• /quiz - Commencer un nouveau quiz
+• /score - Voir votre score actuel
+• /help - Afficher l'aide détaillée
 
 **🏆 Système de points :**
-- Bonne réponse : 10 points
-- Bonus vitesse : +5 points (< 5 secondes)
+• Bonne réponse : 10 points
+• Bonus vitesse : +5 points (< 5 secondes)
 
 Prêt à tester vos connaissances otaku ? Tapez /quiz ! 🚀
         """
@@ -348,9 +334,21 @@ Prêt à tester vos connaissances otaku ? Tapez /quiz ! 🚀
         question = session['questions'][current_q_index]
         session['question_start_time'] = time.time()
         
-        # Créer le texte de la question
-        difficulty_emoji = {"easy": "🟢", "medium": "🟡", "hard": "🔴"}
-        difficulty = question.get('difficulty', 'medium')
+        # Créer le texte de la question avec indicateurs visuels selon la difficulté
+        difficulty_emoji = {
+            "easy": "🟢", 
+            "medium": "🟡", 
+            "hard": "🔴", 
+            "nightmare": "💜",
+            "impossible": "🖤"
+        }
+        difficulty_names = {
+            "easy": "Facile",
+            "medium": "Moyen", 
+            "hard": "Difficile", 
+            "nightmare": "Cauchemar",
+            "impossible": "Impossible"
+        }
         
         question_text = f"**Question {current_q_index + 1}/15** ⏱️\n\n"
         difficulty = question.get('difficulty', 'medium')
@@ -571,9 +569,9 @@ Prêt à tester vos connaissances otaku ? Tapez /quiz ! 🚀
 🎭 **Rang obtenu:** {rank}
 
 📊 **Statistiques détaillées:**
-- Questions traitées: {len(session['questions'])}
-- Temps moyen/question: {total_time/len(session['questions']):.1f}s
-- Efficacité: {"🔥 Excellent" if percentage >= 80 else "👍 Bien" if percentage >= 60 else "💪 À améliorer"}
+• Questions traitées: {len(session['questions'])}
+• Temps moyen/question: {total_time/len(session['questions']):.1f}s
+• Efficacité: {"🔥 Excellent" if percentage >= 80 else "👍 Bien" if percentage >= 60 else "💪 À améliorer"}
 
 🎮 **Prêt pour un nouveau défi ?** Tapez /quiz !
 📚 **Besoin d'aide ?** Tapez /help
@@ -636,54 +634,42 @@ Merci d'avoir joué ! 🎌✨
 4️⃣ Gagnez des points et déverrouillez votre rang !
 
 **🏆 Système de points :**
-- ✅ Bonne réponse : 10 points
-- ⚡ Bonus vitesse : +5 points (< 5 secondes)
-- ❌ Mauvaise réponse : 0 point
+• ✅ Bonne réponse : 10 points
+• ⚡ Bonus vitesse : +5 points (< 5 secondes)
+• ❌ Mauvaise réponse : 0 point
 
 **🎭 Types de questions :**
-- 📝 **Texte** - Culture otaku mondiale
-- 🖼️ **Images** - Personnages iconiques (Wikia officiels)
-- 🎵 **Openings** - Musiques légendaires (YouTube authentiques)
+• 📝 **Texte** - Culture otaku mondiale
+• 🖼️ **Images** - Personnages iconiques (Wikia officiels)
+• 🎵 **Openings** - Musiques légendaires (YouTube authentiques)
 
 **💎 Niveaux de difficulté :**
-- 🟢 **Facile** - Anime populaires (Naruto, One Piece...)
-- 🟡 **Moyen** - Connaissances générales  
-- 🔴 **Difficile** - Pour les vrais fans
-- 💜 **Cauchemar** - Références cultes
-- 🖤 **Impossible** - Niveau maître absolu
+• 🟢 **Facile** - Anime populaires (Naruto, One Piece...)
+• 🟡 **Moyen** - Connaissances générales  
+• 🔴 **Difficile** - Pour les vrais fans
+• 💜 **Cauchemar** - Références cultes
+• 🖤 **Impossible** - Niveau maître absolu
 
 **🏅 Rangs disponibles :**
-- 🌟 Maître Otaku Légendaire Ultime (95%+)
-- 👑 Maître Otaku Légendaire (90%+)
-- 🔥 Expert Anime (80%+)
-- ⚡ Fan Confirmé (60%+)
-- 💪 Amateur Éclairé (40%+)
-- 🎯 Apprenti Otaku (<40%)
+• 🌟 Maître Otaku Légendaire Ultime (95%+)
+• 👑 Maître Otaku Légendaire (90%+)
+• 🔥 Expert Anime (80%+)
+• ⚡ Fan Confirmé (60%+)
+• 💪 Amateur Éclairé (40%+)
+• 🎯 Apprenti Otaku (<40%)
 
 **🌍 Animes inclus :**
-- **Classiques :** Naruto, One Piece, Dragon Ball, Death Note, Evangelion
-- **Modernes :** Demon Slayer, Jujutsu Kaisen, Attack on Titan, My Hero Academia
-- **Cultes :** Cowboy Bebop, Steins;Gate, Hunter x Hunter
-- **Films :** Your Name, Studio Ghibli
-- **Et bien plus !**
-
-**🎭 Niveaux de difficulté :**
-- 🟢 **Facile** - Anime populaires (Naruto, One Piece...)
-- 🟡 **Moyen** - Connaissances générales
-- 🔴 **Difficile** - Pour les vrais experts !
-
-**🏅 Rangs disponibles :**
-- 👑 Maître Otaku Légendaire (90%+)
-- ⭐ Expert Anime (80%+)
-- 🎖️ Fan Confirmé (60%+)
-- 📚 Amateur Éclairé (40%+)
-- 🌱 Apprenti Otaku (<40%)
+• **Classiques :** Naruto, One Piece, Dragon Ball, Death Note, Evangelion
+• **Modernes :** Demon Slayer, Jujutsu Kaisen, Attack on Titan, My Hero Academia
+• **Cultes :** Cowboy Bebop, Steins;Gate, Hunter x Hunter
+• **Films :** Your Name, Studio Ghibli
+• **Et bien plus !**
 
 **📋 Commandes utiles :**
-- /quiz - Nouveau quiz
-- /score - Score actuel
-- /start - Retour à l'accueil
-- /help - Cette aide
+• /quiz - Nouveau quiz
+• /score - Score actuel
+• /start - Retour à l'accueil
+• /help - Cette aide
 
 🎌 **Bon quiz et que le meilleur otaku gagne !** 🎌
         """
